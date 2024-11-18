@@ -1,0 +1,52 @@
+﻿<h2>Shopping Cart</h2>
+
+<style>
+    div {
+        padding: 10px;
+    }
+</style>
+
+@using (Html.BeginForm("ShoppingCart", "Tasks", FormMethod.Post))
+{
+    <div>
+        <label for="fullname">Input your fullname:</label>
+        @Html.TextBox("fullname")
+    </div>
+
+    <div>
+        <label for="address">Input your address:</label>
+        @Html.TextBox("address")
+    </div>
+    
+    <div>
+        <label for="Supermarket">Select Supermarket:</label>
+        @Html.DropDownList("selectedSupermarket", (IEnumerable<SelectListItem>)ViewBag.Supermarkets)
+    </div>
+    
+    <div>
+        <label>Shipping Date:</label>
+        @foreach (var date in ViewBag.ShippingDates as List<SelectListItem>)
+        {
+            <div>
+                @Html.RadioButton("shippingDate", date.Value) @date.Text
+            </div>
+        }
+    </div>
+
+    <div>
+        <label for="ShoppingList">Shopping List:</label>
+        <br />
+        @Html.ListBox("shoppingList", (IEnumerable<SelectListItem>)ViewBag.Products)
+    </div>
+
+    <div>
+        <input type="submit" value="Submit" />
+    </div>
+
+    @if (ViewBag.Message != null)
+    {
+        <div>
+            <strong>@ViewBag.Message</strong>
+        </div>
+    }
+}

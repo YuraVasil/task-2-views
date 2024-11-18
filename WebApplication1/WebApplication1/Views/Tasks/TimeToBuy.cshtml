@@ -1,0 +1,4 @@
+﻿@inject WebApplication1.Services.ITimeService TimeService
+
+<h2>It's time for shopping!</h2>
+<p>@TimeService.GetTimeForTomorrow().ToString("f")</p>
